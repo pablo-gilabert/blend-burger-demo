@@ -19,18 +19,9 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   background-color: var(--color-light);
-  font-family: var(--font-body);
+  font-family: var(--font-title);
   font-size: 20px;
   font-weight: normal;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
 }
 
 input,
@@ -58,4 +49,21 @@ ol {
 
 #root {
   min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: 20px;
+  text-align: center;
+  font-weight: normal;
+  font-family: var(--font-title);
+}
+
+img {
+  display: block;
 }

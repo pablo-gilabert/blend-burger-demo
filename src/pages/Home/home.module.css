@@ -1,0 +1,60 @@
+section {
+    width: 100%;
+}
+
+section p {
+    width: 80%;
+    margin: 0 auto;
+}
+
+section p:first-child {
+    margin-top: 2rem;
+}
+
+section p:nth-child(4) {
+    margin-bottom: 2rem;
+}
+
+section img {
+    width: 80%;
+    margin: 0 auto;
+
+    border-radius: 20px;  
+}
+
+.baseline {
+    width: 85%;
+    margin: 1rem auto;
+
+    border: 1px solid var(--orange);
+}
+
+.featured {
+    background-color: var(--orange);
+    color: black;
+
+    font-size: 24px;
+    margin: 3rem auto;
+}
+
+.featuredImg {
+    margin: 1rem auto;
+}
+
+@media (min-width: 768px) {
+    section img {
+        height: 400px;
+        width: 400px;
+    }
+}
+
+@media (min-width: 1024px) {
+    section p, section h1, section h2 {
+        font-size: 26px;
+    }
+
+    section img {
+        height: 500px;
+        width: 500px;
+    }
+}

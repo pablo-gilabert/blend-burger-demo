@@ -31,8 +31,8 @@
 
 /* Restaurant logo image inside the navigation bar */
 .logo {
-	width: 70px;
-	height: 70px;
+	width: 80px;
+	height: 80px;
 
 	object-fit: cover;
 }
