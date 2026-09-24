@@ -97,7 +97,7 @@ const Navbar = () => {
 	}, [menuOpen, isDesktop])
 
 	return (
-		<header className={styles.navWrapper}>
+		<header>
 			<nav className={styles.nav}>
 				<Link
 					to="/"

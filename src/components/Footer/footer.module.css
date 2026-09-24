@@ -1,0 +1,60 @@
+/* RED FOOTER */
+.redFooter {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    height: 200px;
+    width: 100%;
+
+    background-color: #d92e19;
+}
+
+.redFooter a {
+    width: 55%;
+
+    padding: 1rem;
+    margin: 2rem 0rem;
+
+    font-size: 20px;
+    border-radius: 15px;
+    
+    margin: 1rem auto;
+
+    background-color: var(--orange);
+
+    font-family: var(--font-body);
+    font-weight: bold;
+}
+
+.redFooter p {
+    font-size: 32px;
+    color: white;
+}
+
+/* DARK FOOTER */
+.darkFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 100%;
+    height: 150px;
+
+    background-color: black;
+    color: white;
+}
+
+/* LOGO */
+.darkFooter img {
+    height: 100px;
+    width: 100px;
+    margin: 0;
+}
+
+.darkFooter h1, .darkFooter h2 {
+    font-size: 24px;
+}

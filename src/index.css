@@ -57,7 +57,9 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+a,
+button {
   font-size: 20px;
   text-align: center;
   font-weight: normal;
