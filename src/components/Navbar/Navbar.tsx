@@ -1,109 +1,164 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 
-import logo from "../../assets/icons/logo.jpg";
+import logo from "../../assets/icons/logo.jpg"
 
-import styles from "./navbar.module.css";
+import styles from "./navbar.module.css"
+
+const navigationLinks = [
+	{
+		to: "/",
+		label: "INICIO"
+	},
+	{
+		to: "/menu",
+		label: "MENU"
+	},
+	{
+		to: "/about",
+		label: "NOSOTROS"
+	},
+	{
+		to: "/contact",
+		label: "CONTACTO"
+	},
+	{
+		to: "/ordernow",
+		label: "PEDIR AHORA"
+	}
+]
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false)
 
-  const menuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+	const [isDesktop, setIsDesktop] = useState(() =>
+		window.matchMedia("(min-width: 1024px)").matches
+	)
 
-  const toggleMenu = () => {
-    setMenuOpen((prev) => !prev);
-  };
+	const menuRef = useRef<HTMLDivElement>(null)
+	const buttonRef = useRef<HTMLButtonElement>(null)
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+	const toggleMenu = () => {
+		setMenuOpen((prev) => !prev)
+	}
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
+	const closeMenu = () => {
+		setMenuOpen(false)
+	}
 
-      const clickedOutsideMenu =
-        menuRef.current && !menuRef.current.contains(target);
+	useEffect(() => {
+		const mediaQuery = window.matchMedia("(min-width: 1024px)")
 
-      const clickedOutsideButton =
-        buttonRef.current && !buttonRef.current.contains(target);
+		const handleViewportChange = (event: MediaQueryListEvent) => {
+			setIsDesktop(event.matches)
 
-      if (clickedOutsideMenu && clickedOutsideButton) {
-        closeMenu();
-      }
-    };
+			if (event.matches) {
+				setMenuOpen(false)
+			}
+		}
 
-    const handleScroll = () => {
-      closeMenu();
-    };
+		mediaQuery.addEventListener("change", handleViewportChange)
 
-    document.addEventListener("mousedown", handleClickOutside);
-    window.addEventListener("scroll", handleScroll);
+		return () => {
+			mediaQuery.removeEventListener("change", handleViewportChange)
+		}
+	}, [])
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+	useEffect(() => {
+		if (!menuOpen || isDesktop) {
+			return
+		}
 
-  return (
-    <nav className={styles.nav}>
-      <Link
-        to="/"
-        className={styles.logoLink}
-        onClick={closeMenu}
-      >
-        <img
-          src={logo}
-          alt="Blend Burger"
-          className={styles.logo}
-        />
-      </Link>
+		const handleClickOutside = (event: MouseEvent) => {
+			const target = event.target as Node
 
-      <button
-        ref={buttonRef}
-        className={`${styles.menuButton} ${
-          menuOpen ? styles.menuButtonOpen : ""
-        }`}
-        type="button"
-        onClick={toggleMenu}
-        aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-        aria-expanded={menuOpen}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+			const clickedOutsideMenu =
+				menuRef.current && !menuRef.current.contains(target)
 
-      <div
-        ref={menuRef}
-        className={`${styles.menu} ${
-          menuOpen ? styles.menuOpen : ""
-        }`}
-      >
-        <Link to="/" onClick={closeMenu}>
-          INICIO
-        </Link>
+			const clickedOutsideButton =
+				buttonRef.current && !buttonRef.current.contains(target)
 
-        <Link to="/menu" onClick={closeMenu}>
-          MENU
-        </Link>
+			if (clickedOutsideMenu && clickedOutsideButton) {
+				setMenuOpen(false)
+			}
+		}
 
-        <Link to="/about" onClick={closeMenu}>
-          NOSOTROS
-        </Link>
+		const handleScroll = () => {
+			setMenuOpen(false)
+		}
 
-        <Link to="/contact" onClick={closeMenu}>
-          CONTACTO
-        </Link>
+		document.addEventListener("mousedown", handleClickOutside)
+		window.addEventListener("scroll", handleScroll)
 
-        <Link to="/ordernow" onClick={closeMenu}>
-          PEDIR AHORA
-        </Link>
-      </div>
-    </nav>
-  );
-};
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside)
+			window.removeEventListener("scroll", handleScroll)
+		}
+	}, [menuOpen, isDesktop])
 
-export default Navbar;
+	return (
+		<header className={styles.navWrapper}>
+			<nav className={styles.nav}>
+				<Link
+					to="/"
+					className={styles.logoLink}
+					onClick={closeMenu}
+				>
+					<img
+						src={logo}
+						alt="Blend Burger"
+						className={styles.logo}
+					/>
+				</Link>
+
+				{isDesktop ? (
+					navigationLinks.map((link) => (
+						<Link
+							key={link.to}
+							to={link.to}
+							className={styles.desktopLink}
+						>
+							{link.label}
+						</Link>
+					))
+				) : (
+					<>
+						<button
+							ref={buttonRef}
+							className={`${styles.menuButton} ${
+								menuOpen ? styles.menuButtonOpen : ""
+							}`}
+							type="button"
+							onClick={toggleMenu}
+							aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+							aria-expanded={menuOpen}
+						>
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+
+						<div
+							ref={menuRef}
+							className={`${styles.menu} ${
+								menuOpen ? styles.menuOpen : ""
+							}`}
+						>
+							{navigationLinks.map((link) => (
+								<Link
+									key={link.to}
+									to={link.to}
+									onClick={closeMenu}
+								>
+									{link.label}
+								</Link>
+							))}
+						</div>
+					</>
+				)}
+			</nav>
+		</header>
+	)
+}
+
+export default Navbar
