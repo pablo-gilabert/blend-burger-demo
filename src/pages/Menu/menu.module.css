@@ -1,0 +1,15 @@
+.main {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    text-align: start;
+}
+
+.main p {
+    text-align: start;
+    margin: 0;
+    line-height: 1;
+}
