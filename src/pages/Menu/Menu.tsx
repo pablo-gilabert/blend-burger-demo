@@ -19,11 +19,11 @@ const MenuItems = ({ items }: MenuItemsProps) => {
 	return (
 		<>
 			{items.map((item) => (
-				<div key={item.name}>
-					<p>{item.name}</p>
+				<div className={styles.itemContainer} key={item.name}>
+					<p className={styles.name}>{item.name}</p>
 
 					{item.description && (
-						<p>{item.description}</p>
+						<p className={styles.description}>{item.description}</p>
 					)}
 				</div>
 			))}
