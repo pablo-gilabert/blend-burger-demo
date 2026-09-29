@@ -13,14 +13,6 @@ const navigationLinks = [
 		label: "MENU"
 	},
 	{
-		to: "/about",
-		label: "NOSOTROS"
-	},
-	{
-		to: "/contact",
-		label: "CONTACTO"
-	},
-	{
 		to: "/ordernow",
 		label: "PEDIR AHORA"
 	}
