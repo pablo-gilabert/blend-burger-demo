@@ -8,8 +8,11 @@ import Menu from "./pages/Menu/Menu"
 import NotFound from "./pages/NotFound/NotFound"
 import Order from "./pages/Order/Order"
 
+import Seo from "./seo/Seo"
+
 import styles from "./app.module.css"
 
+// Restores the top of the viewport after client-side navigation.
 const ScrollToTop = () => {
 	const location = useLocation()
 
@@ -24,9 +27,11 @@ const App = () => {
 	return (
 		<div className={styles.app}>
 			<ScrollToTop />
+			<Seo />
+			<a href="#main-content" className={styles.skipLink}>SALTAR AL CONTENIDO</a>
 			<Navbar />
 
-			<main className={styles.content} id="main-content">
+			<main className={styles.content} id="main-content" tabIndex={-1}>
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/menu" element={<Menu />} />

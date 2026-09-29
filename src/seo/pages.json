@@ -1,0 +1,18 @@
+{
+	"/": {
+		"title": "Blend Burger en Guernica | Smash Burgers y Milanesas",
+		"description": "Descubrí Blend Burger en Guernica, Buenos Aires: smash burgers, milanesas, papas y un patio para compartir. Conocé nuestra carta y pedí por WhatsApp."
+	},
+	"/menu": {
+		"title": "Carta, menú y precios | Blend Burger Guernica",
+		"description": "Explorá la carta de Blend Burger: hamburguesas smash, milanesas, papas, adicionales y toppings con sus precios. Todas nuestras burgers incluyen papas."
+	},
+	"/order": {
+		"title": "Pedidos por WhatsApp | Blend Burger Guernica",
+		"description": "Hacé tu pedido en Blend Burger por WhatsApp. Consultá envío a domicilio, retiro en el local, horarios, zonas de cobertura y pedidos para eventos en Guernica."
+	},
+	"notFound": {
+		"title": "Página no encontrada | Blend Burger",
+		"description": "No encontramos esta página de Blend Burger. Volvé al inicio para ver nuestra carta y hacer tu pedido."
+	}
+}

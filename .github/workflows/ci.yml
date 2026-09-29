@@ -1,0 +1,42 @@
+name: Quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Read access is sufficient for linting and building the application.
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Lint, build and smoke tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js and npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Run static analysis
+        run: npm run lint
+
+      - name: Build and validate production SEO
+        run: npm run build
+        env:
+          VITE_SITE_URL: https://blend-burger-demo.vercel.app
+
+      - name: Run production smoke tests
+        run: npm test
+        env:
+          VITE_SITE_URL: https://blend-burger-demo.vercel.app

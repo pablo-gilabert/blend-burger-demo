@@ -5,11 +5,11 @@ import styles from "./order.module.css"
 const Order = () => {
 	return (
 		<div className={styles.orderPage}>
-			<section className={styles.heroSection}>
+			<section className={styles.heroSection} aria-labelledby="order-title">
 				<div className={styles.heroContainer}>
 					<div className={styles.heroContent}>
 						<p className={styles.eyebrow}>PEDÍ DE FORMA FÁCIL</p>
-						<h1 className={styles.heroTitle}>TU BURGER<br />EN MINUTOS</h1>
+						<h1 className={styles.heroTitle} id="order-title">TU BURGER<br />EN MINUTOS</h1>
 						<p className={styles.heroDescription}>
 							Hacé tu pedido por WhatsApp y coordinamos todo directamente con vos.
 						</p>
@@ -18,6 +18,7 @@ const Order = () => {
 							href={whatsappUrl}
 							target="_blank"
 							rel="noopener noreferrer"
+							aria-label="Pedir por WhatsApp (se abre en una pestaña nueva)"
 							className={styles.whatsappButton}
 						>
 							<Icon name="whatsapp" className={styles.icon} />

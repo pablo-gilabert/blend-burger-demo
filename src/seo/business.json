@@ -1,0 +1,11 @@
+{
+	"name": "Blend Burger",
+	"description": "Hamburguesas smash, milanesas, papas y pedidos por WhatsApp en Guernica, Buenos Aires.",
+	"servesCuisine": ["Hamburguesas", "Smash burgers", "Milanesas"],
+	"address": {
+		"@type": "PostalAddress",
+		"addressLocality": "Guernica",
+		"addressRegion": "Buenos Aires",
+		"addressCountry": "AR"
+	}
+}

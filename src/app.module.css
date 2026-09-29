@@ -11,3 +11,22 @@
 	flex: 1;
 	min-width: 0;
 }
+
+/* Keeps the skip link hidden until a keyboard user focuses it */
+.skipLink {
+	position: fixed;
+	top: 0.75rem;
+	left: 0.75rem;
+	z-index: 100;
+	padding: 0.75rem 1rem;
+	border-radius: var(--radius-card);
+	background-color: var(--orange);
+	color: var(--color-dark);
+	font-family: var(--font-title);
+	transform: translateY(-200%);
+}
+
+/* Reveals the skip link without changing the regular page layout */
+.skipLink:focus-visible {
+	transform: translateY(0);
+}

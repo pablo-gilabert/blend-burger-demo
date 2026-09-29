@@ -18,8 +18,8 @@ const featuredImages = [
 const Home = () => {
 	return (
 		<div className={styles.homePage}>
-			<section className={styles.hero}>
-				<h1>VENÍS POR LA BURGER.<br />TE QUEDÁS POR EL PLAN.</h1>
+			<section className={styles.hero} aria-labelledby="home-title">
+				<h1 id="home-title">VENÍS POR LA BURGER.<br />TE QUEDÁS POR EL PLAN.</h1>
 				<div className={styles.baseline} aria-hidden="true" />
 				<p>Smash burgers, milanesas, patio, cumples, eventos y karaoke.</p>
 

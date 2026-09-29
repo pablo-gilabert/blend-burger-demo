@@ -5,9 +5,12 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc -b && vite build",
+		"build": "tsc -b && vite build && node scripts/generate-seo.mjs && node scripts/check-seo.mjs",
+		"preview": "vite preview",
 		"lint": "oxlint",
-		"preview": "vite preview"
+		"seo:check": "node scripts/check-seo.mjs",
+		"test": "node --test",
+		"validate": "npm run lint && npm run build && npm test"
 	},
 	"dependencies": {
 		"react": "^19.2.8",

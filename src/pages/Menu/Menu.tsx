@@ -8,7 +8,7 @@ const MenuCard = ({ item }: { item: MenuItem }) => {
 				<h3 className={styles.itemName}>{item.name}</h3>
 
 				{item.price != null && (
-					<span className={styles.price}>${item.price.toLocaleString("es-AR")}</span>
+					<data className={styles.price} value={item.price}>${item.price.toLocaleString("es-AR")}</data>
 				)}
 			</div>
 

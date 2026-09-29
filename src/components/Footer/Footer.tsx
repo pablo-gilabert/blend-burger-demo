@@ -7,7 +7,7 @@ const Footer = () => {
 	return (
 		<footer>
 			<section className={styles.redFooter} aria-label="Realizá tu pedido">
-				<p>¿TENÉS HAMBRE?</p>
+				<h2>¿TENÉS HAMBRE?</h2>
 				<Link to="/order">PEDÍ AHORA</Link>
 			</section>
 
