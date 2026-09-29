@@ -16,20 +16,6 @@
 	z-index: 1000;
 }
 
-/* Link that wraps the restaurant logo and redirects to the home page */
-.logoLink {
-	display: flex;
-	align-items: center;
-}
-
-/* Restaurant logo image inside the navigation bar */
-.logo {
-	width: 80px;
-	height: 80px;
-
-	object-fit: cover;
-}
-
 /* Mobile button that opens and closes the dropdown navigation menu */
 .menuButton {
 	position: relative;
@@ -130,9 +116,57 @@
 	font-family: var(--font-title);
 }
 
+.desktopLink:hover {
+	color: var(--orange);
+}
+
+/* Contains the restaurant title and its decorative horizontal line */
+.titleContainer {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+
+	flex: 1;
+	min-width: 0;
+
+	margin-right: 2rem;
+}
+
+/* Displays the restaurant name without navigation functionality */
+.titleBlend {
+	color: var(--orange);
+	font-size: 30px;
+}
+
+.titleBurger {
+	color: var(--color-light);
+	font-size: 18px;
+}
+
+/* Creates the decorative horizontal line beside the restaurant title */
+.baseline {
+	flex: 1;
+	height: 2px;
+
+	background-color: var(--orange);
+}
+
 @media (min-width: 1024px) {
-	/* Distributes the logo and every desktop navigation link with equal space */
+
+	/* Distributes the title container and navigation links with equal spacing */
 	.nav {
 		justify-content: space-evenly;
+		gap: 1.5rem;
+	}
+
+	/* Prevents the title container from consuming all available horizontal space */
+	.titleContainer {
+		flex: none;
+	}
+
+	/* Sets a fixed width for the decorative line on desktop */
+	.baseline {
+		flex: none;
+		width: 50px;
 	}
 }

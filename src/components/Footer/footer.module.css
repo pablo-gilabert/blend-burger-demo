@@ -10,6 +10,7 @@
     width: 100%;
 
     background-color: #d92e19;
+    text-align: center;
 }
 
 .redFooter a {
@@ -46,6 +47,7 @@
 
     background-color: black;
     color: white;
+    text-align: center;
 }
 
 /* LOGO */

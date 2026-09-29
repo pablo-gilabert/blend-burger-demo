@@ -1,27 +1,63 @@
+/* Lays out the menu page content vertically */
 .main {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    justify-content: center;
-    align-items: flex-start;
-
-    text-align: start;
+	justify-content: center;
+	align-items: flex-start;
 }
 
-.main p {
-    text-align: start;
-    margin: 0;
-    line-height: 1;
+.header {
+	background-color: black;
+	color: var(--color-light);
+	padding-bottom: 2rem;
+}
+
+.title {
+	font-size: 35px;
+	text-align: center;
+	padding: 1rem 0rem;
+}
+
+.subtitle {
+	text-align: center;
+	padding-top: 1rem;
+}
+
+.menuSection {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.foodTitle {
+	font-size: 28px;
 }
 
 .name {
-    text-align: start;
-    margin: 0;
-    line-height: 1; 
+	font-size: 22px;
 }
 
-.name p {
-    text-align: start;
-    margin: 0;
-    line-height: 1;  
+.description {
+	font-size: 18px;
+	margin-top: 1rem;
+}
+
+.price {
+	font-size: 22px;
+}
+
+.itemContainer {
+	margin: 1rem 0rem;
+	padding: 1rem;
+	background-color: white;
+	border-radius: 15px;
+}
+
+.itemContainer div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.foodTitle {
+	margin: 1rem 0rem;
 }

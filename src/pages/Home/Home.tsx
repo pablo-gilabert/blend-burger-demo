@@ -9,55 +9,47 @@ import produccion from "../../assets/images/hamb-producc.png"
 import papas from "../../assets/images/papas-sazonadas.png"
 
 const Home = () => {
-  return (
-    <div>
+	return (
+		<div>
+			<Navbar />
 
-      <Navbar/>
+			<main className={styles.main}>
+				<section className={styles.homeSection}>
+					<p>VENÍS POR LA BURGER.</p>
+					<p>TE QUEDÁS POR EL PLAN.</p>
 
-      <main>
-        <section>
+					<div className={styles.baseline}></div>
 
-          <p>VENÍS POR LA BURGER.</p>
-          <p>TE QUEDÁS POR EL PLAN.</p>
+					<p>Smash burgers, milanesas, patio, cumples, eventos y karaoke.</p>
 
-          <div className={styles.baseline}></div>
+					<img className={styles.headerImgMobile} src={bbqMobile} alt="Hamburguesa con queso cheddar y salsa barbacoa." />
+					<img className={styles.headerImg} src={bbq} alt="Hamburguesa con queso cheddar y salsa barbacoa." />
+				</section>
 
-          <p>Smash burgers, milanesas, patio, cumples, eventos y karaoke.</p>
+				<section className={styles.homeSection}>
+					<div className={styles.featured}>
+						<h1>BLEND - BURGER - GUERNICA</h1>
+					</div>
 
-          <img className={styles.headerImgMobile} src={bbqMobile} alt="Hamburguesa con queso cheddar y salsa barbacoa."/>
-          <img className={styles.headerImg} src={bbq} alt="Hamburguesa con queso cheddar y salsa barbacoa."/>
+					<h2>COMBO DESTACADO</h2>
 
-        </section>
+					<img className={styles.featuredImg} src={stacker} alt="Milanesa de ternera con salsa stacker, pepino, bacon y papas fritas" />
 
-        <section>
+					<div className={styles.baseline}></div>
 
-          <div className={styles.featured}>
-            <h1>BLEND - BURGER - GUERNICA</h1>
-          </div>
+					<h2>Difícil resistirse.</h2>
 
-          <h2>COMBO DESTACADO</h2>
+					<div className={styles.imgContainer}>
+						<img src={armado} alt="Armado en producción de hamburguesas." />
+						<img src={papas} alt="Papas sazonadas." />
+						<img src={produccion} alt="Armado en producción de hamburguesas." />
+					</div>
+				</section>
 
-          <img className={styles.featuredImg} src={stacker} alt="Milanesa de ternera con salsa stacker, pepino, bacon y papas fritas"/>
-
-          <div className={styles.baseline}></div>
-          
-          <h2>Difícil resistirse.</h2>
-
-          <div className={styles.imgContainer}>
-
-            <img src={armado} alt="Armado en producción de hamburguesas."/>
-            <img src={papas} alt="Papas sazonadas."/>
-            <img src={produccion} alt="Armado en producción de hamburguesas."/>
-
-          </div>
-
-        </section>
-
-        <Footer/>
-
-      </main>
-    </div>
-  )
+				<Footer />
+			</main>
+		</div>
+	)
 }
 
 export default Home

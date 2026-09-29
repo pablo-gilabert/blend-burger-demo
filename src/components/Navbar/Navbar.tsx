@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 
-import logo from "../../assets/icons/logo.jpg"
-
 import styles from "./navbar.module.css"
 
 const navigationLinks = [
@@ -99,17 +97,15 @@ const Navbar = () => {
 	return (
 		<header>
 			<nav className={styles.nav}>
-				<Link
-					to="/"
-					className={styles.logoLink}
-					onClick={closeMenu}
-				>
-					<img
-						src={logo}
-						alt="Blend Burger"
-						className={styles.logo}
-					/>
-				</Link>
+				<div className={styles.titleContainer}>
+					<h1 className={styles.titleBlend}>BLEND</h1>
+					<h1 className={styles.titleBurger}>BURGER</h1>
+
+					<span
+						className={styles.baseline}
+						aria-hidden="true"
+					></span>
+				</div>
 
 				{isDesktop ? (
 					navigationLinks.map((link) => (
