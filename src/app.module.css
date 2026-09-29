@@ -1,0 +1,13 @@
+/* Provides a full-height application layout shared across all routes */
+.app {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100dvh;
+}
+
+/* Allows page content to fill the remaining space above the shared footer */
+.content {
+	flex: 1;
+	min-width: 0;
+}

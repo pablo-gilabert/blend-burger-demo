@@ -1,100 +1,49 @@
-import Footer from "../../components/Footer/Footer"
-import Navbar from "../../components/Navbar/Navbar"
-import {
-	addons,
-	burgers,
-	fries,
-	milanesas,
-	toppings,
-	type MenuItem
-} from "../../data/menuData"
+import { menuCategories, type MenuCategory, type MenuItem } from "../../data/menuData"
 import styles from "./menu.module.css"
 
-type MenuItemsProps = {
-	items: MenuItem[]
+const MenuCard = ({ item }: { item: MenuItem }) => {
+	return (
+		<li className={styles.itemCard}>
+			<div className={styles.itemHeading}>
+				<h3 className={styles.itemName}>{item.name}</h3>
+
+				{item.price != null && (
+					<span className={styles.price}>${item.price.toLocaleString("es-AR")}</span>
+				)}
+			</div>
+
+			{item.description && <p className={styles.description}>{item.description}</p>}
+		</li>
+	)
 }
 
-const MenuItems = ({ items }: MenuItemsProps) => {
+const MenuSection = ({ category }: { category: MenuCategory }) => {
 	return (
-		<>
-			{items.map((item) => (
-				<div className={styles.itemContainer} key={item.name}>
+		<section className={styles.category} aria-labelledby={`category-${category.id}`}>
+			<header className={styles.categoryHeader}>
+				<h2 id={`category-${category.id}`}>{category.title}</h2>
+				<p>{category.subtitle}</p>
+			</header>
 
-					<div>
-						<p className={styles.name}>{item.name}</p>
-
-						{item.price != null && (
-							<p className={styles.price}>
-								${item.price.toLocaleString("es-AR")}
-							</p>
-						)}
-					</div>
-
-					{item.description && (
-						<p className={styles.description}>{item.description}</p>
-					)}
-
-				</div>
-			))}
-		</>
+			<ul className={styles.itemList}>
+				{category.items.map(item => <MenuCard key={item.name} item={item} />)}
+			</ul>
+		</section>
 	)
 }
 
 const Menu = () => {
 	return (
-		<div>
-			<Navbar />
-
-			<header className={styles.header}>
-				<p className={styles.title}>NUESTRO MENÚ</p>
-				<p className={styles.subtitle}>Smash burgers, milanesas y mucho más.</p>
-				<p className={styles.subtitle}>Elegí tu próximo favorito.</p>
+		<div className={styles.menuPage}>
+			<header className={styles.intro}>
+				<h1>NUESTRO MENÚ</h1>
+				<p>Smash burgers, milanesas y mucho más.</p>
+				<p>Elegí tu próximo favorito.</p>
 			</header>
 
-			<main className={styles.main}>
-				<section className={styles.menuSection}>
-
-					<div>
-
-						<p className={styles.foodTitle}>BURGERS</p>
-						<p>Todas incluyen papas.</p>
-
-						<div>
-							<MenuItems items={burgers} />
-						</div>
-
-						<p className={styles.foodTitle}>ADICIONALES</p>
-						<p>Personalizá tu pedido.</p>
-
-						<div>
-							<MenuItems items={addons} />
-						</div>
-
-						<p className={styles.foodTitle}>TOPPINGS</p>
-						<p>Personalizá tu pedido.</p>
-
-						<div>
-							<MenuItems items={toppings} />
-						</div>
-
-						<p className={styles.foodTitle}>PAPAS BLEND</p>
-						<p>Acompañamientos.</p>
-
-						<div>
-							<MenuItems items={fries} />
-						</div>
-
-						<p className={styles.foodTitle}>MILANESAS</p>
-						<p>XL y XXXL</p>
-
-						<div>
-							<MenuItems items={milanesas} />
-						</div>
-					</div>
-				</section>
-			</main>
-
-			<Footer />
+			<div className={styles.categoryGrid}>
+				{menuCategories.map(category => <MenuSection key={category.id} category={category} />)}
+			</div>
 		</div>
 	)
 }

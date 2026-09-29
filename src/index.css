@@ -1,61 +1,86 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap");
 
+/* Makes element sizing predictable throughout the application */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
+/* Removes browser-defined spacing only; component spacing belongs to CSS Modules */
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
+/* Enables smooth anchor navigation */
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
+/* Provides shared typography and page colors */
 body {
-  -webkit-font-smoothing: antialiased;
-  background-color: var(--color-light);
-  font-family: var(--font-title);
-  font-size: 20px;
-  font-weight: normal;
+	min-width: 280px;
+	background-color: var(--color-light);
+	color: var(--color-dark);
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
 }
 
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
+/* Applies the condensed display font to all headings */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-p,
-a,
-button {
-  font-size: 20px;
-  font-weight: normal;
-  font-family: var(--font-title);
-  line-height: 1;
+h6 {
+	font-family: var(--font-title);
+	font-weight: normal;
+	line-height: 1.1;
 }
 
+/* Lets controls inherit the surrounding font */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Resets default button presentation */
+button {
+	border: 0;
+	background: none;
+	cursor: pointer;
+}
+
+/* Resets link decoration while preserving inherited text color */
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Resets list markers; individual sections supply their own markers */
+ul,
+ol {
+	list-style: none;
+}
+
+/* Prevents images from overflowing their parent */
 img {
-  display: block;
+	display: block;
+	max-width: 100%;
+}
+
+/* Provides a visible keyboard-focus indicator across the application */
+:focus-visible {
+	outline: 3px solid var(--orange);
+	outline-offset: 4px;
+}
+
+/* Honors reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 }

@@ -1,63 +1,117 @@
-/* Lays out the menu page content vertically */
-.main {
-	display: flex;
-	flex-direction: column;
-
-	justify-content: center;
-	align-items: flex-start;
+/* Contains all content belonging exclusively to the menu page */
+.menuPage {
+	background-color: var(--color-light);
 }
 
-.header {
-	background-color: black;
+/* Displays the menu title and introductory description on a dark background */
+.intro {
+	padding: 2.5rem 1rem;
+	background-color: var(--color-dark);
 	color: var(--color-light);
-	padding-bottom: 2rem;
-}
-
-.title {
-	font-size: 35px;
 	text-align: center;
-	padding: 1rem 0rem;
 }
 
-.subtitle {
-	text-align: center;
-	padding-top: 1rem;
+/* Emphasizes the page title within the dark menu introduction */
+.intro h1 {
+	margin-bottom: 1rem;
+	font-size: clamp(35px, 6vw, 56px);
 }
 
-.menuSection {
-	width: 90%;
-	margin: 0 auto;
+/* Provides compact supporting copy beneath the menu title */
+.intro p {
+	font-size: 16px;
+	line-height: 1.6;
 }
 
-.foodTitle {
+/* Stacks every menu category in a single column on all viewport sizes */
+.categoryGrid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-items: start;
+	gap: 2rem;
+	width: min(100% - 2rem, var(--content-max));
+	margin: 3rem auto;
+}
+
+/* Groups one category heading with its corresponding product list */
+.category {
+	min-width: 0;
+}
+
+/* Adds space below each category title and descriptive subtitle */
+.categoryHeader {
+	margin-bottom: 1rem;
+}
+
+/* Displays the name of one food category */
+.categoryHeader h2 {
+	margin-bottom: 0.35rem;
 	font-size: 28px;
 }
 
-.name {
-	font-size: 22px;
+/* Describes the food category using the body font */
+.categoryHeader p {
+	color: var(--color-muted);
+	font-size: 14px;
 }
 
-.description {
-	font-size: 18px;
-	margin-top: 1rem;
+/* Stacks product cards with consistent separation */
+.itemList {
+	display: grid;
+	gap: 0.75rem;
 }
 
-.price {
-	font-size: 22px;
-}
-
-.itemContainer {
-	margin: 1rem 0rem;
+/* Displays one food product with a light background */
+.itemCard {
+	min-width: 0;
 	padding: 1rem;
-	background-color: white;
-	border-radius: 15px;
+	border-radius: var(--radius-card);
+	background-color: var(--color-white);
 }
 
-.itemContainer div {
+/* Keeps product name and price aligned in the same row */
+.itemHeading {
 	display: flex;
+	align-items: baseline;
 	justify-content: space-between;
+	gap: 1rem;
 }
 
-.foodTitle {
-	margin: 1rem 0rem;
+/* Allows longer product names to wrap without overlapping the price */
+.itemName {
+	min-width: 0;
+	font-size: 22px;
+}
+
+/* Prevents numeric prices from wrapping awkwardly */
+.price {
+	flex-shrink: 0;
+	font-family: var(--font-title);
+	font-size: 22px;
+	white-space: nowrap;
+}
+
+/* Separates product ingredients from the heading and price */
+.description {
+	margin-top: 0.55rem;
+	color: var(--color-muted);
+	font-size: 15px;
+	line-height: 1.45;
+}
+
+@media (min-width: 900px) {
+	/* Keeps desktop categories stacked while using 85% of the viewport width */
+	.categoryGrid {
+		width: 85%;
+		max-width: none;
+		gap: 2.5rem;
+	}
+}
+
+@media (max-width: 360px) {
+	/* Keeps long prices readable on narrow screens */
+	.itemName,
+	.price {
+		font-size: 19px;
+	}
 }

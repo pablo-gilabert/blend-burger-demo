@@ -1,31 +1,26 @@
-import styles from "./footer.module.css"
 import { Link } from "react-router-dom"
+
 import logo from "../../assets/icons/logo.jpg"
+import styles from "./footer.module.css"
 
 const Footer = () => {
-  return (
-    <footer>
-      <section className={styles.redFooter}>
+	return (
+		<footer>
+			<section className={styles.redFooter} aria-label="Realizá tu pedido">
+				<p>¿TENÉS HAMBRE?</p>
+				<Link to="/order">PEDÍ AHORA</Link>
+			</section>
 
-        <p>¿TENÉS HAMBRE?</p>
-        <Link to="/order">PEDI AHORA</Link>
+			<div className={styles.darkFooter}>
+				<div className={styles.brandDetails}>
+					<p>BLEND BURGER</p>
+					<p>GUERNICA</p>
+				</div>
 
-      </section>
-
-      <section className={styles.darkFooter}>
-
-        <div>
-          <h1>BLEND BURGER</h1>
-          <h2>GUERNICA</h2>
-        </div>
-
-        <div>
-          <img src={logo} alt="Blend Burger Logo."/>
-        </div>
-
-      </section>
-    </footer>
-  )
+				<img src={logo} alt="Logo de Blend Burger" width="100" height="100" loading="lazy" decoding="async" />
+			</div>
+		</footer>
+	)
 }
 
 export default Footer

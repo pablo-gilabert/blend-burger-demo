@@ -1,0 +1,61 @@
+/* Centers the fallback page without affecting navigation or the shared footer */
+.notFound {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	min-height: min(70vh, 650px);
+	padding: 4rem 1.5rem;
+	background-color: var(--color-light);
+	text-align: center;
+}
+
+/* Makes the HTTP error number an expressive brand element */
+.errorCode {
+	color: var(--orange);
+	font-family: var(--font-title);
+	font-size: clamp(90px, 22vw, 180px);
+	line-height: 1;
+	-webkit-text-stroke: 2px var(--color-dark);
+}
+
+/* Constrains the not-found page's explanation heading */
+.notFound h1 {
+	max-width: 660px;
+	font-size: clamp(30px, 6vw, 54px);
+}
+
+/* Provides a readable explanation under the not-found heading */
+.description {
+	max-width: 480px;
+	color: var(--color-muted);
+	line-height: 1.5;
+}
+
+/* Returns the visitor to the canonical home route */
+.homeLink {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.8rem;
+	min-height: 54px;
+	padding: 1rem 1.5rem;
+	border-radius: var(--radius-card);
+	background-color: var(--color-dark);
+	color: var(--color-light);
+	font-family: var(--font-title);
+	transition: background-color 0.2s ease;
+}
+
+/* Highlights the home route action on hover */
+.homeLink:hover {
+	background-color: var(--color-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	/* Disables decorative color animation when reduced motion is preferred */
+	.homeLink {
+		transition: none;
+	}
+}

@@ -1,53 +1,63 @@
-import styles from "./home.module.css"
-import Navbar from "../../components/Navbar/Navbar"
-import bbq from "../../assets/images/hamb-bbq.png"
+import { Link } from "react-router-dom"
+
+import bbqDesktop from "../../assets/images/hamb-bbq.png"
 import bbqMobile from "../../assets/images/hamb-bbq-mobile.png"
 import stacker from "../../assets/images/mila-stacker.png"
 import armado from "../../assets/images/hamb-armado.png"
-import Footer from "../../components/Footer/Footer"
 import produccion from "../../assets/images/hamb-producc.png"
 import papas from "../../assets/images/papas-sazonadas.png"
 
+import styles from "./home.module.css"
+
+const featuredImages = [
+	{ src: armado, alt: "Armado en producción de hamburguesas." },
+	{ src: papas, alt: "Papas sazonadas." },
+	{ src: produccion, alt: "Hamburguesas preparadas en la cocina de Blend Burger." }
+]
+
 const Home = () => {
 	return (
-		<div>
-			<Navbar />
+		<div className={styles.homePage}>
+			<section className={styles.hero}>
+				<h1>VENÍS POR LA BURGER.<br />TE QUEDÁS POR EL PLAN.</h1>
+				<div className={styles.baseline} aria-hidden="true" />
+				<p>Smash burgers, milanesas, patio, cumples, eventos y karaoke.</p>
 
-			<main className={styles.main}>
-				<section className={styles.homeSection}>
-					<p>VENÍS POR LA BURGER.</p>
-					<p>TE QUEDÁS POR EL PLAN.</p>
+				<picture className={styles.heroPicture}>
+					<source media="(min-width: 1024px)" srcSet={bbqDesktop} />
+					<img
+						src={bbqMobile}
+						alt="Hamburguesa con queso cheddar y salsa barbacoa."
+						fetchPriority="high"
+						decoding="async"
+					/>
+				</picture>
+			</section>
 
-					<div className={styles.baseline}></div>
+			<section className={styles.featured} aria-labelledby="featured-title">
+				<div className={styles.featuredBand}>
+					<p>BLEND - BURGER - GUERNICA</p>
+				</div>
 
-					<p>Smash burgers, milanesas, patio, cumples, eventos y karaoke.</p>
+				<h2 id="featured-title">COMBO DESTACADO</h2>
+				<img
+					className={styles.featuredImage}
+					src={stacker}
+					alt="Milanesa de ternera con salsa stacker, pepino, bacon y papas fritas."
+					loading="lazy"
+					decoding="async"
+				/>
+				<div className={styles.baseline} aria-hidden="true" />
+				<h2>Difícil resistirse.</h2>
 
-					<img className={styles.headerImgMobile} src={bbqMobile} alt="Hamburguesa con queso cheddar y salsa barbacoa." />
-					<img className={styles.headerImg} src={bbq} alt="Hamburguesa con queso cheddar y salsa barbacoa." />
-				</section>
+				<div className={styles.imageGrid}>
+					{featuredImages.map(image => (
+						<img key={image.src} src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+					))}
+				</div>
 
-				<section className={styles.homeSection}>
-					<div className={styles.featured}>
-						<h1>BLEND - BURGER - GUERNICA</h1>
-					</div>
-
-					<h2>COMBO DESTACADO</h2>
-
-					<img className={styles.featuredImg} src={stacker} alt="Milanesa de ternera con salsa stacker, pepino, bacon y papas fritas" />
-
-					<div className={styles.baseline}></div>
-
-					<h2>Difícil resistirse.</h2>
-
-					<div className={styles.imgContainer}>
-						<img src={armado} alt="Armado en producción de hamburguesas." />
-						<img src={papas} alt="Papas sazonadas." />
-						<img src={produccion} alt="Armado en producción de hamburguesas." />
-					</div>
-				</section>
-
-				<Footer />
-			</main>
+				<Link className={styles.menuLink} to="/menu">VER CARTA</Link>
+			</section>
 		</div>
 	)
 }

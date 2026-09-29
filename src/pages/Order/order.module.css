@@ -1,548 +1,438 @@
-/* Main container for the entire order page */
+/* Contains the entire order page while preventing horizontal overflow */
 .orderPage {
-	width: 100%;
 	overflow-x: clip;
-
 	background-color: var(--color-light);
 }
 
-/* Main introductory section with the WhatsApp call to action */
+/* Provides the mobile-first background and spacing for the primary call to action */
 .heroSection {
-	width: 100%;
-
 	padding: 3rem 1.5rem;
-
-	background-color: var(--color-light);
 }
 
-/* Responsive wrapper for the introduction and order options */
+/* Centers the introductory copy and available service options */
 .heroContainer {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	gap: 3rem;
-
-	width: 100%;
-	max-width: 1300px;
-
+	max-width: var(--content-max);
 	margin: 0 auto;
 }
 
-/* Groups the main heading, description, button and benefits */
-.heroContent {
+/* Stacks hero typography, WhatsApp button and customer benefits */
+.heroContent,
+.servicePanel,
+.serviceText,
+.stepsContainer {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-	gap: 1.5rem;
-
 	min-width: 0;
 }
 
-/* Small introductory text displayed above the main heading */
-.eyebrow {
-	color: #ed7326;
+/* Sets the spacing between hero introduction elements */
+.heroContent,
+.servicePanel {
+	gap: 1.5rem;
+}
 
-	font-family: var(--font-body);
+/* Distinguishes the introductory eyebrow from other copy */
+.eyebrow {
+	color: var(--color-accent-strong);
 	font-size: 13px;
 	font-weight: 700;
 	letter-spacing: 2px;
 }
 
-/* Main heading displayed at the top of the order page */
+/* Presents the prominent two-line page title */
 .heroTitle {
-	color: #111;
-
-	font-family: var(--font-title);
 	font-size: clamp(48px, 11vw, 72px);
-	font-weight: normal;
 	line-height: 1;
 }
 
-/* Supporting text displayed below the main heading */
+/* Limits the supporting hero paragraph to a readable measure */
 .heroDescription {
 	max-width: 430px;
-
-	color: #292929;
-
-	font-family: var(--font-body);
+	color: var(--color-body);
 	font-size: 17px;
 	line-height: 1.5;
 }
 
-/* Main button that redirects the user to the restaurant's WhatsApp */
+/* Opens the restaurant's existing WhatsApp ordering endpoint */
 .whatsappButton {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1rem;
-
 	width: 100%;
 	max-width: 390px;
 	min-height: 64px;
-
 	padding: 1rem 1.5rem;
-
-	background-color: var(--orange);
-	color: #111;
-
 	border-radius: 16px;
-
+	background-color: var(--orange);
 	font-family: var(--font-title);
 	font-size: 19px;
-
-	transition:
-		background-color 0.3s ease,
-		transform 0.3s ease;
+	transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Changes the appearance of the WhatsApp button when hovered */
+/* Provides a responsive hover state for the WhatsApp call to action */
 .whatsappButton:hover {
-	background-color: #ff902c;
-
+	background-color: var(--color-orange-hover);
 	transform: translateY(-3px);
 }
 
-/* Prevents the button label from wrapping unnecessarily */
+/* Avoids breaking the WhatsApp label over multiple lines */
 .whatsappButton span {
 	white-space: nowrap;
 }
 
-/* Shared SVG icons used throughout the order page */
+/* Establishes consistent sizing for SVG icons inside the order page */
 .icon {
-	display: block;
-
+	flex-shrink: 0;
 	width: 26px;
 	height: 26px;
-
-	flex-shrink: 0;
 }
 
-/* Horizontally distributes the three ordering benefits */
+/* Distributes the three order benefits in equally sized columns */
 .benefits {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 1rem;
-
 	width: 100%;
 	max-width: 440px;
-
 	margin-top: 1rem;
 }
 
-/* Individual benefit containing an icon and a short description */
+/* Centers each ordering benefit vertically and horizontally */
 .benefitItem {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.75rem;
-
 	text-align: center;
 }
 
-/* Benefit icon displayed above its description */
+/* Enlarges benefit symbols for quick scanning */
 .benefitItem .icon {
 	width: 30px;
 	height: 30px;
-
-	color: #111;
 }
 
-/* Short descriptive text displayed below each benefit icon */
+/* Describes each benefit using compact body typography */
 .benefitItem p {
-	font-family: var(--font-body);
 	font-size: 12px;
 	font-weight: 500;
 	line-height: 1.4;
 }
 
-/* Container for delivery, pickup and event ordering options */
-.servicePanel {
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-
-	min-width: 0;
-}
-
-/* Aligns the decorative line and service section heading */
+/* Aligns the orange baseline beside the available-service heading */
 .serviceHeading {
 	display: flex;
 	align-items: flex-start;
 	gap: 1rem;
 }
 
-/* Decorative horizontal line displayed beside the service heading */
+/* Adds the orange decorative mark to the service section */
 .baseline {
+	flex-shrink: 0;
 	width: 45px;
 	height: 4px;
-
 	margin-top: 0.7rem;
-
-	flex-shrink: 0;
-
 	background-color: var(--orange);
 }
 
-/* Heading for the available ordering methods */
+/* Sets the service heading's responsive size */
 .serviceHeading h2 {
-	color: #111;
-
-	font-family: var(--font-title);
 	font-size: 26px;
-	line-height: 1.1;
 }
 
-/* Vertically arranges the service option cards */
+/* Stacks delivery, pickup and event ordering choices */
 .serviceList {
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	gap: 0.75rem;
 }
 
-/* Individual dark card containing an ordering option */
+/* Displays a service option in a dark rounded card */
 .serviceCard {
 	display: flex;
 	align-items: center;
 	gap: 1.5rem;
-
-	width: 100%;
 	min-height: 110px;
-
 	padding: 1.25rem;
-
-	background-color: #111;
+	border-radius: var(--radius-card);
+	background-color: var(--color-dark);
 	color: var(--color-light);
-
-	border-radius: 15px;
 }
 
-/* Orange icon displayed inside each service card */
+/* Centers each service icon in a consistent orange column */
 .serviceIcon {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
-	width: 45px;
-
 	flex-shrink: 0;
-
+	width: 45px;
 	color: var(--orange);
 }
 
-/* Enlarges the service option icons */
+/* Enlarges the service icons independently from other icon types */
 .serviceIcon .icon {
 	width: 36px;
 	height: 36px;
 }
 
-/* Text container for service titles and descriptions */
+/* Separates a service title from its supporting description */
 .serviceText {
-	display: flex;
-	flex-direction: column;
 	gap: 0.5rem;
-
-	min-width: 0;
 }
 
-/* Heading displayed inside each service option */
+/* Sets the service heading's condensed display typography */
 .serviceText h3 {
-	font-family: var(--font-title);
 	font-size: 20px;
-	font-weight: normal;
 }
 
-/* Description displayed below each service option heading */
+/* Uses legible body typography for the service descriptions */
 .serviceText p {
-	font-family: var(--font-body);
 	font-size: 13px;
 	line-height: 1.4;
 }
 
-/* Dark section containing the ordering process and additional information */
+/* Contains ordering instructions and additional restaurant information */
 .stepsSection {
 	display: flex;
 	flex-direction: column;
 	gap: 3rem;
-
-	width: 100%;
-
 	padding: 3rem 1.5rem;
-
-	background-color: #111;
+	background-color: var(--color-dark);
 	color: var(--color-light);
 }
 
-/* Centers the ordering process within the available page width */
+/* Constrains ordering instructions to the same max width as the hero */
 .stepsContainer {
-	display: flex;
-	flex-direction: column;
 	gap: 2rem;
-
 	width: 100%;
-	max-width: 1300px;
-
+	max-width: var(--content-max);
 	margin: 0 auto;
 }
 
-/* Main heading for the ordering instructions */
+/* Displays the ordering-process section heading */
 .stepsContainer h2 {
-	font-family: var(--font-title);
 	font-size: 32px;
 }
 
-/* Responsive list containing every step of the ordering process */
+/* Arranges instructions in one column until desktop */
 .stepsList {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	gap: 1.5rem;
-
-	list-style: none;
 }
 
-/* Individual ordering step with its number and description */
+/* Aligns each numbered instruction with its explanation */
 .stepItem {
 	position: relative;
-
 	display: flex;
 	align-items: center;
 	gap: 1rem;
 }
 
-/* Circular orange indicator containing the ordering step number */
+/* Displays each order step number in a circular orange badge */
 .stepNumber {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
+	flex-shrink: 0;
 	width: 40px;
 	height: 40px;
-
-	flex-shrink: 0;
-
-	background-color: var(--orange);
-	color: #111;
-
 	border-radius: 50%;
-
-	font-family: var(--font-body);
+	background-color: var(--orange);
+	color: var(--color-dark);
 	font-size: 16px;
 	font-weight: 700;
 }
 
-/* Description displayed beside each ordering step */
+/* Defines the order-step description's reading size */
 .stepItem p {
-	font-family: var(--font-body);
 	font-size: 14px;
 	line-height: 1.5;
 }
 
-/* Decorative vertical connector between ordering steps on mobile */
+/* Connects sequential steps vertically on mobile */
 .stepItem:not(:last-child)::after {
 	content: "";
-
 	position: absolute;
-
 	top: 45px;
 	left: 19px;
-
 	width: 1px;
 	height: 15px;
-
 	background-color: var(--orange);
 }
 
-/* Responsive container for opening hours and delivery information */
+/* Places business hours and delivery information in a responsive grid */
 .informationGrid {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
 	gap: 1rem;
-
 	width: 100%;
-	max-width: 1300px;
-
+	max-width: var(--content-max);
 	margin: 0 auto;
 }
 
-/* Light-colored informational card displayed below the ordering steps */
+/* Displays each informational panel on a cream card */
 .informationCard {
 	display: flex;
 	align-items: center;
 	gap: 1.25rem;
-
 	min-width: 0;
 	min-height: 130px;
-
 	padding: 1.5rem;
-
+	border-radius: var(--radius-card);
 	background-color: var(--color-light);
-	color: #111;
-
-	border-radius: 15px;
+	color: var(--color-dark);
 }
 
-/* Icon container displayed inside each informational card */
+/* Prevents an informational icon from shrinking alongside long text */
 .informationIcon {
 	flex-shrink: 0;
 }
 
-/* Enlarges the icons displayed inside informational cards */
+/* Enlarges each informational card's icon */
 .informationIcon .icon {
 	width: 42px;
 	height: 42px;
 }
 
-/* Heading describing the informational card's content */
+/* Adds spacing below an informational card heading */
 .informationCard h3 {
 	margin-bottom: 0.75rem;
-
-	font-family: var(--font-title);
 	font-size: 21px;
 }
 
-/* Supporting text displayed inside informational cards */
+/* Styles informational text using the standard body font */
 .informationCard p {
-	font-family: var(--font-body);
 	font-size: 14px;
 	line-height: 1.5;
 }
 
-/* Tablet layout adjustments */
 @media (min-width: 768px) {
-
-	/* Increases horizontal spacing around the main hero */
-	.heroSection {
-		padding: 4rem 3rem;
-	}
-
-	/* Allows the ordering benefit cards to use their content width */
-	.benefits {
-		gap: 2rem;
-	}
-
-	/* Increases spacing around the ordering process */
+	/* Increases tablet-level horizontal and vertical section spacing */
+	.heroSection,
 	.stepsSection {
 		padding: 4rem 3rem;
 	}
 
-	/* Displays the informational cards in two equal columns */
+	/* Adds breathing room between benefit cards on tablets */
+	.benefits {
+		gap: 2rem;
+	}
+
+	/* Displays two informational cards side by side on tablets */
 	.informationGrid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
 
-/* Desktop layout adjustments */
 @media (min-width: 1024px) {
-
-	/* Provides additional spacing around the main hero section */
+	/* Adds spacious desktop margins to the primary call to action */
 	.heroSection {
 		padding: 5rem 4rem;
 	}
 
-	/* Displays the main introduction and ordering options side by side */
+	/* Places introduction and ordering methods in adjacent desktop columns */
 	.heroContainer {
 		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 		gap: 4rem;
 	}
 
-	/* Increases the main heading size on larger screens */
+	/* Expands the hero heading on desktop screens */
 	.heroTitle {
 		font-size: clamp(70px, 6vw, 92px);
 	}
 
-	/* Adds a vertical divider before the service options */
+	/* Separates ordering methods from the main desktop introduction */
 	.servicePanel {
 		padding-left: 3rem;
-
-		border-left: 1px solid #e5b678;
+		border-left: 1px solid var(--color-divider);
 	}
 
-	/* Increases the service heading size on desktop */
+	/* Scales the service heading on desktop */
 	.serviceHeading h2 {
 		font-size: 30px;
 	}
 
-	/* Provides more space around the ordering process */
+	/* Increases spacing in the dark instruction section on desktop */
 	.stepsSection {
-		padding: 4rem;
 		gap: 4rem;
+		padding: 4rem;
 	}
 
-	/* Aligns the ordering section title horizontally */
+	/* Scales the steps heading on larger screens */
 	.stepsContainer h2 {
 		font-size: 38px;
 	}
 
-	/* Displays the four ordering steps horizontally */
+	/* Displays the four ordering steps in one equal-width row */
 	.stepsList {
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 		gap: 2rem;
 	}
 
-	/* Changes the individual step layout to a vertical arrangement */
+	/* Centers each step number above its instruction text */
 	.stepItem {
 		flex-direction: column;
-		align-items: center;
 		gap: 1rem;
-
 		text-align: center;
 	}
 
-	/* Centers the text displayed below each ordering step */
+	/* Constrains the explanatory text under each desktop step */
 	.stepItem p {
 		max-width: 190px;
 	}
 
-	/* Replaces the vertical connectors with horizontal lines between steps */
+	/* Connects the sequence horizontally on desktop */
 	.stepItem:not(:last-child)::after {
 		top: 19px;
 		left: calc(50% + 30px);
-
 		width: calc(100% - 20px);
 		height: 1px;
 	}
 
-	/* Increases the space available inside the information cards */
+	/* Increases internal whitespace in desktop information cards */
 	.informationCard {
 		padding: 2rem;
 	}
 }
 
-/* Adapts the page to narrow mobile screens */
 @media (max-width: 374px) {
-
-	/* Reduces horizontal padding on smaller mobile devices */
+	/* Reduces section gutters on narrower phones */
 	.heroSection,
 	.stepsSection {
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
 
-	/* Reduces the main heading size to prevent horizontal overflow */
+	/* Prevents oversized headings from causing horizontal overflow */
 	.heroTitle {
 		font-size: 44px;
 	}
 
-	/* Adjusts the WhatsApp button to fit narrow screens */
+	/* Fits the WhatsApp label and icons into small phone widths */
 	.whatsappButton {
 		gap: 0.5rem;
-
 		padding: 1rem;
-
 		font-size: 16px;
 	}
 
-	/* Reduces the spacing between service icons and descriptions */
+	/* Reduces internal service-card spacing on narrow phones */
 	.serviceCard {
 		gap: 1rem;
-
 		padding: 1rem;
 	}
 }
 
-/* Reduces unnecessary motion for users who prefer limited animations */
 @media (prefers-reduced-motion: reduce) {
-
-	/* Removes the animated hover transition from the ordering button */
+	/* Removes optional motion from the WhatsApp call to action */
 	.whatsappButton {
 		transition: none;
+	}
+	/* Keeps the button stationary when hovered in reduced-motion mode */
+	.whatsappButton:hover {
+		transform: none;
 	}
 }

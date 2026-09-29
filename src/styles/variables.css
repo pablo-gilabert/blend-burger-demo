@@ -1,6 +1,19 @@
 :root {
-    --orange: #FCAD38;
-    --color-light: #F5EBDD;
-    --font-title: "Anton", sans-serif;
-    --font-body: "Inter", sans-serif;
+	--orange: #FCAD38;
+	--color-light: #F5EBDD;
+	--font-title: "Anton", sans-serif;
+	--font-body: "Inter", sans-serif;
+
+	--color-dark: #111111;
+	--color-white: #FFFFFF;
+	--color-muted: #6D675F;
+	--color-red: #D92E19;
+	--color-orange-hover: #FF902C;
+	--color-accent-strong: #ED7326;
+	--color-divider: #E5B678;
+	--color-body: #292929;
+
+	--radius-card: 15px;
+	--content-max: 1300px;
+	--nav-height: 80px;
 }

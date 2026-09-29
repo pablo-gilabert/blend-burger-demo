@@ -1,62 +1,73 @@
-/* RED FOOTER */
+/* Highlights the main ordering call to action above the site footer */
 .redFooter {
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    height: 200px;
-    width: 100%;
-
-    background-color: #d92e19;
-    text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	min-height: 200px;
+	padding: 2rem 1rem;
+	background-color: var(--color-red);
+	color: var(--color-white);
+	text-align: center;
 }
 
-.redFooter a {
-    width: 55%;
-
-    padding: 1rem;
-    margin: 2rem 0rem;
-
-    font-size: 20px;
-    border-radius: 15px;
-    
-    margin: 1rem auto;
-
-    background-color: var(--orange);
-
-    font-family: var(--font-body);
-    font-weight: bold;
-}
-
+/* Displays the promotional question using the brand display font */
 .redFooter p {
-    font-size: 32px;
-    color: white;
+	font-family: var(--font-title);
+	font-size: 32px;
 }
 
-/* DARK FOOTER */
+/* Links the promotional section to the canonical order route */
+.redFooter a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: min(55%, 340px);
+	min-width: 180px;
+	padding: 1rem;
+	border-radius: var(--radius-card);
+	background-color: var(--orange);
+	color: var(--color-dark);
+	font-family: var(--font-body);
+	font-weight: 700;
+	transition: background-color 0.2s ease;
+}
+
+/* Gives the order call to action a visible hover state */
+.redFooter a:hover {
+	background-color: var(--color-orange-hover);
+}
+
+/* Distributes brand text and logo within the dark footer */
 .darkFooter {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-
-    width: 100%;
-    height: 150px;
-
-    background-color: black;
-    color: white;
-    text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	gap: 1rem;
+	min-height: 150px;
+	padding: 1rem;
+	background-color: var(--color-dark);
+	color: var(--color-white);
+	text-align: center;
 }
 
-/* LOGO */
+/* Displays footer brand and location as stacked lines */
+.brandDetails {
+	font-family: var(--font-title);
+	font-size: 24px;
+}
+
+/* Constrains the restaurant logo to its intended footer size */
 .darkFooter img {
-    height: 100px;
-    width: 100px;
-    margin: 0;
+	width: 100px;
+	height: 100px;
+	object-fit: contain;
 }
 
-.darkFooter h1, .darkFooter h2 {
-    font-size: 24px;
+@media (prefers-reduced-motion: reduce) {
+	/* Prevents animated colors in the order call to action */
+	.redFooter a {
+		transition: none;
+	}
 }

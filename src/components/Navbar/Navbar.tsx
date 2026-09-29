@@ -1,43 +1,24 @@
 import { useEffect, useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 import styles from "./navbar.module.css"
 
 const navigationLinks = [
-	{
-		to: "/",
-		label: "INICIO"
-	},
-	{
-		to: "/menu",
-		label: "MENU"
-	},
-	{
-		to: "/ordernow",
-		label: "PEDIR AHORA"
-	}
+	{ to: "/", label: "INICIO", end: true },
+	{ to: "/menu", label: "CARTA", end: false },
+	{ to: "/order", label: "PEDIDOS", end: false }
 ]
+
+const desktopQuery = "(min-width: 1024px)"
 
 const Navbar = () => {
 	const [menuOpen, setMenuOpen] = useState(false)
-
-	const [isDesktop, setIsDesktop] = useState(() =>
-		window.matchMedia("(min-width: 1024px)").matches
-	)
-
+	const [isDesktop, setIsDesktop] = useState(() => window.matchMedia(desktopQuery).matches)
 	const menuRef = useRef<HTMLDivElement>(null)
 	const buttonRef = useRef<HTMLButtonElement>(null)
 
-	const toggleMenu = () => {
-		setMenuOpen((prev) => !prev)
-	}
-
-	const closeMenu = () => {
-		setMenuOpen(false)
-	}
-
 	useEffect(() => {
-		const mediaQuery = window.matchMedia("(min-width: 1024px)")
+		const mediaQuery = window.matchMedia(desktopQuery)
 
 		const handleViewportChange = (event: MediaQueryListEvent) => {
 			setIsDesktop(event.matches)
@@ -49,97 +30,94 @@ const Navbar = () => {
 
 		mediaQuery.addEventListener("change", handleViewportChange)
 
-		return () => {
-			mediaQuery.removeEventListener("change", handleViewportChange)
-		}
+		return () => mediaQuery.removeEventListener("change", handleViewportChange)
 	}, [])
 
 	useEffect(() => {
-		if (!menuOpen || isDesktop) {
-			return
-		}
+		if (!menuOpen || isDesktop) return
 
-		const handleClickOutside = (event: MouseEvent) => {
+		const handleClickOutside = (event: PointerEvent) => {
 			const target = event.target as Node
 
-			const clickedOutsideMenu =
-				menuRef.current && !menuRef.current.contains(target)
-
-			const clickedOutsideButton =
-				buttonRef.current && !buttonRef.current.contains(target)
-
-			if (clickedOutsideMenu && clickedOutsideButton) {
+			if (!menuRef.current?.contains(target) && !buttonRef.current?.contains(target)) {
 				setMenuOpen(false)
 			}
 		}
 
-		const handleScroll = () => {
-			setMenuOpen(false)
+		const handleEscape = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setMenuOpen(false)
+				buttonRef.current?.focus()
+			}
 		}
 
-		document.addEventListener("mousedown", handleClickOutside)
-		window.addEventListener("scroll", handleScroll)
+		const closeOnScroll = () => setMenuOpen(false)
+
+		document.addEventListener("pointerdown", handleClickOutside)
+		document.addEventListener("keydown", handleEscape)
+		window.addEventListener("scroll", closeOnScroll, { passive: true })
 
 		return () => {
-			document.removeEventListener("mousedown", handleClickOutside)
-			window.removeEventListener("scroll", handleScroll)
+			document.removeEventListener("pointerdown", handleClickOutside)
+			document.removeEventListener("keydown", handleEscape)
+			window.removeEventListener("scroll", closeOnScroll)
 		}
 	}, [menuOpen, isDesktop])
 
 	return (
-		<header>
-			<nav className={styles.nav}>
-				<div className={styles.titleContainer}>
-					<h1 className={styles.titleBlend}>BLEND</h1>
-					<h1 className={styles.titleBurger}>BURGER</h1>
-
-					<span
-						className={styles.baseline}
-						aria-hidden="true"
-					></span>
+		<header className={styles.header}>
+			<nav className={styles.nav} aria-label="Navegación principal">
+				<div className={styles.titleContainer} aria-label="Blend Burger">
+					<span className={styles.titleBlend}>BLEND</span>
+					<span className={styles.titleBurger}>BURGER</span>
+					<span className={styles.baseline} aria-hidden="true" />
 				</div>
 
-				{isDesktop ? (
-					navigationLinks.map((link) => (
-						<Link
-							key={link.to}
-							to={link.to}
-							className={styles.desktopLink}
-						>
-							{link.label}
-						</Link>
-					))
+			{isDesktop ? (
+					<>
+						{navigationLinks.map(({ to, label, end }) => (
+							<NavLink
+								key={to}
+								to={to}
+								end={end}
+								className={({ isActive }) => `${styles.desktopLink} ${isActive ? styles.activeLink : ""}`}
+							>
+								{label}
+							</NavLink>
+						))}
+					</>
 				) : (
 					<>
 						<button
 							ref={buttonRef}
-							className={`${styles.menuButton} ${
-								menuOpen ? styles.menuButtonOpen : ""
-							}`}
+							className={`${styles.menuButton} ${menuOpen ? styles.menuButtonOpen : ""}`}
 							type="button"
-							onClick={toggleMenu}
-							aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+							aria-controls="mobile-navigation"
 							aria-expanded={menuOpen}
+							aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+							onClick={() => setMenuOpen(previous => !previous)}
 						>
-							<span></span>
-							<span></span>
-							<span></span>
+							<span />
+							<span />
+							<span />
 						</button>
 
 						<div
+							id="mobile-navigation"
 							ref={menuRef}
-							className={`${styles.menu} ${
-								menuOpen ? styles.menuOpen : ""
-							}`}
+							className={`${styles.menu} ${menuOpen ? styles.menuOpen : ""}`}
+							inert={!menuOpen}
 						>
-							{navigationLinks.map((link) => (
-								<Link
-									key={link.to}
-									to={link.to}
-									onClick={closeMenu}
+							{navigationLinks.map(({ to, label, end }) => (
+								<NavLink
+									key={to}
+									to={to}
+									end={end}
+									className={({ isActive }) => isActive ? styles.activeLink : ""}
+									onClick={() => setMenuOpen(false)}
 								>
-									{link.label}
-								</Link>
+									{label}
+								</NavLink>
 							))}
 						</div>
 					</>

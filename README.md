@@ -1,35 +1,29 @@
-# React + TypeScript + Vite
+# Blend Burger
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React + TypeScript + Vite + CSS Modules. The application contains three main pages: **Inicio** (`/`), **Carta** (`/menu`), and **Pedidos** (`/order`), plus a branded 404 fallback. The previous `/ordernow` endpoint redirects to `/order`.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
+npm run build
+npm run lint
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Project structure
+
+- `src/App.tsx` mounts the shared Navbar and Footer exactly once and owns all routes.
+- `src/data/menuData.ts` stores product names, descriptions, prices, and categories.
+- `src/data/orderData.ts` stores order-page content and the WhatsApp URL.
+- `src/components/Icon` stores the SVG icon definitions shared by the order page.
+- `src/pages/NotFound` provides a dedicated fallback screen and a home link.
+- `src/styles/variables.css` contains reusable design tokens; `src/index.css` contains only site-wide resets and defaults.
+
+## Asset preservation
+
+The original repository's photographs and brand logo must remain in `src/assets`. Do not delete those folders when applying this update. The project uses the exact original asset import paths.
+
+## Hosting
+
+`vercel.json` rewrites direct URL requests to the SPA entry point. The React router then displays the matching page or the branded 404 page.
