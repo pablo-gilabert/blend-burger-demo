@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useDisplay } from "../../context/DisplayContext";
 import DisplayControls from "../DisplayControls/DisplayControls";
-import styles from "./Navbar.module.css";
+import styles from "./navbar.module.css";
 
 // A single responsive navigation prevents bilingual labels and controls from overlapping.
 export default function Navbar() {
