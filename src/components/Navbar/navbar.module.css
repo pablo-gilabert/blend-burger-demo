@@ -1,156 +1,117 @@
-/* Contains the navigation without pinning it to the viewport while scrolling */
+/* One continuous navigation surface in every viewport and theme. */
 .header {
-	position: relative;
-	z-index: 10;
+    position: relative;
+    z-index: 30;
+    background: var(--nav-bg);
+    color: var(--nav-fg);
 }
-
-/* Aligns the brand and navigation controls in one responsive row */
 .nav {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1.5rem;
-	min-height: var(--nav-height);
-	padding: 1rem clamp(1rem, 4vw, 2rem);
-	background-color: var(--color-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(12px, 2vw, 28px);
+    min-height: 86px;
+    max-width: 1500px;
+    margin: auto;
+    padding: 15px clamp(16px, 3vw, 42px);
 }
-
-/* Places the brand words and the decorative baseline next to one another */
-.titleContainer {
-	display: flex;
-	align-items: center;
-	gap: 0.7rem;
-	flex: 1;
-	min-width: 0;
-	font-family: var(--font-title);
-	white-space: nowrap;
+.brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 9px;
+    flex-shrink: 0;
+    font-family: var(--font-title);
+    letter-spacing: 0.015em;
+    white-space: nowrap;
 }
-
-/* Emphasizes the first part of the restaurant name */
-.titleBlend {
-	color: var(--orange);
-	font-size: 30px;
+.brand span {
+    color: var(--orange);
+    font-size: clamp(24px, 2.5vw, 34px);
 }
-
-/* Displays the second part of the restaurant name */
-.titleBurger {
-	color: var(--color-light);
-	font-size: 18px;
+.brand strong {
+    font-size: clamp(16px, 1.5vw, 22px);
+    font-weight: 400;
 }
-
-/* Fills available space beside the brand on mobile */
-.baseline {
-	flex: 1;
-	height: 2px;
-	background-color: var(--orange);
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    order: 3;
 }
-
-/* Toggles the mobile navigation dropdown */
+.links {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.45vw, 25px);
+    margin-left: auto;
+}
+.link {
+    font-family: var(--font-title);
+    font-size: clamp(12px, 0.95vw, 16px);
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+.link:hover,
+.active {
+    color: var(--orange);
+}
 .menuButton {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 6px;
-	flex-shrink: 0;
-	width: 35px;
-	height: 35px;
+    display: none;
 }
-
-/* Creates each bar of the animated hamburger icon */
-.menuButton span {
-	display: block;
-	width: 30px;
-	height: 3px;
-	background-color: var(--color-light);
-	transition: transform 0.3s ease, opacity 0.3s ease;
+@media (max-width: 1120px) {
+    .nav {
+        min-height: 74px;
+    }
+    .menuButton {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 38px;
+    }
+    .menuButton span {
+        display: block;
+        height: 2px;
+        width: 27px;
+        background: var(--nav-fg);
+    }
+    .links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        margin: 0;
+        padding: 8px 20px 20px;
+        background: var(--nav-bg);
+        border-top: 1px solid var(--border-ui);
+        box-shadow: 0 15px 25px rgb(0 0 0 / 18%);
+    }
+    .open {
+        display: flex;
+    }
+    .link {
+        padding: 15px 12px;
+        border-bottom: 1px solid var(--border-ui);
+        font-size: 16px;
+    }
 }
-
-/* Rotates the first bar into the top half of a close icon */
-.menuButtonOpen span:first-child {
-	transform: translateY(9px) rotate(45deg);
-}
-
-/* Hides the center bar when the mobile menu is open */
-.menuButtonOpen span:nth-child(2) {
-	opacity: 0;
-}
-
-/* Rotates the third bar into the bottom half of a close icon */
-.menuButtonOpen span:last-child {
-	transform: translateY(-9px) rotate(-45deg);
-}
-
-/* Keeps mobile navigation collapsed until the menu is opened */
-.menu {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-	width: 100%;
-	max-height: 0;
-	overflow: hidden;
-	background-color: var(--color-dark);
-	opacity: 0;
-	visibility: hidden;
-	transition: max-height 0.35s ease, opacity 0.2s ease, visibility 0.2s ease;
-}
-
-/* Reveals the entire mobile navigation below the header */
-.menuOpen {
-	max-height: 240px;
-	opacity: 1;
-	visibility: visible;
-}
-
-/* Centers the mobile navigation destinations */
-.menu a {
-	padding: 1rem;
-	color: var(--color-light);
-	font-family: var(--font-title);
-	text-align: center;
-}
-
-/* Displays horizontal navigation destinations on desktop */
-.desktopLink {
-	color: var(--color-light);
-	font-family: var(--font-title);
-	white-space: nowrap;
-	transition: color 0.2s ease;
-}
-
-/* Highlights the current page and hovered navigation destinations */
-.activeLink,
-.menu a:hover,
-.desktopLink:hover {
-	color: var(--orange);
-}
-
-@media (min-width: 1024px) {
-	/* Distributes the brand and each desktop navigation item evenly */
-	.nav {
-		justify-content: space-evenly;
-	}
-
-	/* Prevents the brand from pushing navigation destinations together */
-	.titleContainer {
-		flex: none;
-	}
-
-	/* Keeps the decorative baseline at a consistent desktop width */
-	.baseline {
-		flex: none;
-		width: 50px;
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	/* Disables decorative menu animations when reduced motion is preferred */
-	.menu,
-	.menuButton span,
-	.desktopLink {
-		transition: none;
-	}
+@media (max-width: 480px) {
+    .nav {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .brand span {
+        font-size: 24px;
+    }
+    .brand strong {
+        font-size: 15px;
+    }
+    .actions {
+        gap: 4px;
+    }
 }

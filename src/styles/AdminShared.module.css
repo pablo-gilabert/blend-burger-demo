@@ -1,0 +1,183 @@
+/* Reusable dashboard layout, cards and responsive data tables. */
+.shell {
+    min-height: 100vh;
+    padding: 30px clamp(16px, 5vw, 70px) 65px;
+    background: var(--page-bg);
+    color: var(--page-text);
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 34px;
+}
+.brand {
+    font-family: var(--font-title);
+    font-size: clamp(24px, 3.5vw, 38px);
+}
+.brand span {
+    color: var(--orange);
+}
+.topActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: start;
+    gap: 35px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    border: 1px solid var(--border-ui);
+    border-radius: 16px;
+    background: var(--surface-ui);
+}
+.sidebar a {
+    display: block;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 650;
+}
+.sidebar a:hover,
+.active {
+    background: var(--hover-ui);
+    color: var(--orange);
+}
+.content {
+    min-width: 0;
+}
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.heading h1 {
+    margin-bottom: 8px;
+    font-size: clamp(32px, 4vw, 52px);
+}
+.heading p,
+.notice {
+    color: var(--muted-ui);
+    font-size: 13px;
+    line-height: 1.6;
+}
+.button,
+.ghost,
+.danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 10px 15px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.button {
+    background: var(--orange);
+    color: #111;
+}
+.ghost {
+    border: 1px solid var(--border-ui);
+    color: var(--page-text);
+}
+.danger {
+    background: #bb392a;
+    color: #fff;
+}
+.tableWrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-ui);
+    border-radius: 13px;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.table th,
+.table td {
+    padding: 13px;
+    border-bottom: 1px solid var(--border-ui);
+    text-align: left;
+    vertical-align: middle;
+}
+.table th {
+    color: var(--muted-ui);
+    font-size: 11px;
+    text-transform: uppercase;
+}
+.table tr:last-child td {
+    border-bottom: 0;
+}
+.card {
+    padding: 19px;
+    border: 1px solid var(--border-ui);
+    border-radius: 13px;
+    background: var(--surface-ui);
+}
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 13px;
+    margin-bottom: 24px;
+}
+.stat {
+    display: grid;
+    gap: 5px;
+    padding: 17px;
+    border-radius: 12px;
+    background: var(--surface-ui);
+    border: 1px solid var(--border-ui);
+}
+.stat strong {
+    font-family: var(--font-title);
+    font-size: 28px;
+}
+.stat small {
+    color: var(--muted-ui);
+}
+.inlineActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.select {
+    padding: 10px 12px;
+    border: 1px solid var(--border-ui);
+    border-radius: 8px;
+    background: var(--surface-ui);
+    color: var(--page-text);
+}
+.notice {
+    margin-top: 30px;
+}
+@media (max-width: 850px) {
+    .layout {
+        grid-template-columns: 1fr;
+        gap: 19px;
+    }
+    .sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}

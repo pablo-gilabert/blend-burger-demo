@@ -1,20 +1,12 @@
 {
-	"$schema": "https://openapi.vercel.sh/vercel.json",
-	"redirects": [
-		{
-			"source": "/ordernow",
-			"destination": "/order",
-			"permanent": true
-		}
-	],
-	"rewrites": [
-		{
-			"source": "/menu",
-			"destination": "/menu/index.html"
-		},
-		{
-			"source": "/order",
-			"destination": "/order/index.html"
-		}
-	]
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "redirects": [
+        { "source": "/ordernow", "destination": "/order", "permanent": true }
+    ],
+    "rewrites": [
+        { "source": "/menu", "destination": "/menu/index.html" },
+        { "source": "/order", "destination": "/order/index.html" },
+        { "source": "/admin", "destination": "/index.html" },
+        { "source": "/admin/:path*", "destination": "/index.html" }
+    ]
 }
