@@ -9,13 +9,14 @@ A responsive, bilingual restaurant portfolio project built with **React 19, Type
 
 ## Features
 
-- **Public restaurant website** with Home, Menu, Orders, responsive photography, and preserved WhatsApp ordering.
+- **Public restaurant website** with Home, Menu, Orders, responsive photography, and preserved WhatsApp ordering. The menu offers search, category selection, alphabetical sorting and price sorting in combination.
 - **Spanish / English** interface with a language selector, translated content, menu categories and descriptions.
 - **Dark / light themes**, dark by default, saved in browser preferences.
 - **Administrator sign-in** with an immediately visible demo account and a dashboard-inspired split layout.
 - **Order management** featuring customer/contact data, pickup or delivery, order status, payment status and order totals.
 - **SweetAlert2 dialogs** for adding and editing orders and products, changing hours, confirmation prompts, validation and deletion.
-- **Editable menu and prices** with localized product names/descriptions and publication toggles.
+- **Editable menu and prices** with localized product names/descriptions, publication toggles, and the same combined search/category/alphabetical/price filters in the administration dashboard.
+- **Zero-price menu rule:** a public menu item with a price of **ARS 0** remains visible but shows **no price**; the edit dialog explains this next to the price input. Products set as inactive stay hidden from the public menu. The local demo ordering form only offers active products priced above zero.
 - **Opening-hours editor** with an independent schedule per weekday.
 - **Demo orders** submitted through a local form on the public ordering page; they appear on the same browser's admin dashboard.
 - **Local persistence** through `localStorage`; demo sign-in uses `sessionStorage`.
@@ -50,8 +51,10 @@ src/
 │   └── RestaurantTypes.ts        # Shared typed data contracts
 ├── i18n/Ui.ts                    # Shared Spanish and English translations
 ├── lib/Dialogs.ts                # Safe SweetAlert2 wrappers
+├── lib/CatalogFilters.ts         # Pure filtering/sorting, accent-insensitive search
 ├── components/
 │   ├── AdminShell/
+│   ├── CatalogFilters/              # Shared public/admin search and sorting toolbar
 │   ├── DisplayControls/
 │   ├── Navbar/
 │   └── ...
@@ -86,6 +89,8 @@ The production build includes static SEO generation and validation. `npm test` t
 ## State and SEO scope
 
 `RestaurantSeed.ts` uses the existing `menuData.ts` as its initial source. Interactive changes are deliberately **browser-local**. The build-time SEO generator uses the original data so pre-rendered structured data may differ from locally edited menu items; this limitation is intentional for a standalone frontend demonstration.
+
+The public and administrative menus read the same browser-local data. Search is accent-insensitive and matches both language variants of names, descriptions, and category titles. The alphabetical and price selectors can be combined; when both are active, price is the primary sort criterion and alphabetic order breaks price ties. Choosing either sort produces one globally ordered list across the selected categories. Clearing both returns to the original grouped menu.
 
 The real WhatsApp ordering action is unchanged and independent of locally simulated orders. Nothing created in a demo dialog reaches a restaurant or a remote database. A production implementation would require authenticated backend APIs, database persistence, authorization, input validation, privacy controls, and payment-provider integration.
 

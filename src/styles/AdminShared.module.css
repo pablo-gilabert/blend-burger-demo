@@ -181,3 +181,21 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Shared search toolbar fits the admin content column without horizontal overflow. */
+.catalogFilters {
+    margin-bottom: 24px;
+}
+
+.catalogFilters > div {
+    width: 100%;
+    margin: 0;
+}
+
+.catalogEmpty {
+    padding: 22px;
+    border: 1px solid var(--border-ui);
+    border-radius: 13px;
+    color: var(--muted-ui);
+    background: var(--surface-ui);
+}
